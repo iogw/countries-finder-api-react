@@ -156,7 +156,7 @@ function App() {
         <button type="submit" onClick={handleAddNewCountry}>
           Add country
         </button>
-        <p>{error}</p>
+        {error? <p className='red'>{error}</p>:null}
       </form>
     );
   };

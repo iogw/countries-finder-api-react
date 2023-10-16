@@ -6,20 +6,21 @@
   border-radius: 0.5rem;
   text-align: center;
 }
-.main{
-    margin: 3rem;
+.main {
+  margin: 3rem;
 }
 .forms {
   display: flex;
   justify-content: space-between;
-
 }
 .filters {
   margin: 0 3rem;
   display: flex;
   flex-direction: column;
 }
-
+.red {
+  color: red;
+}
 input,
 button,
 select {
@@ -31,26 +32,26 @@ button {
   background-color: rgb(11, 110, 128);
   color: white;
 }
-.cards-container{
-    margin: 3rem auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
+.cards-container {
+  margin: 3rem auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
 }
-.card{
-    padding: 3rem;
-    position: relative;
-    width: 20rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    border: 0.1rem rgb(11, 110, 128) solid;
-    border-radius: 1rem;
+.card {
+  padding: 3rem;
+  position: relative;
+  width: 20rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: 0.1rem rgb(11, 110, 128) solid;
+  border-radius: 1rem;
 }
-.delete-button{
-    position: absolute;
-    top: 5px;
-    right: 5px;
+.delete-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }
