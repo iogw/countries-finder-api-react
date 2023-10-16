@@ -34,9 +34,9 @@ function App() {
       newCountryData.capital === '' &&
       newCountryData.continent === ''
     ) {
-      setError('TE HAS OLVIDADO DE ALGO')
+      setError('TE HAS OLVIDADO DE ALGO');
     } else {
-      setError('')
+      setError('');
       setCountries([newCountryData, ...countries]);
       setNewCountryData(newObjData);
     }
@@ -52,7 +52,7 @@ function App() {
   //renders
   const renderHeader = () => {
     return (
-      <header>
+      <header className="header">
         <h1>Country Info App</h1>
         <p>
           Explore information about countries, capitals, and flags. Add new
@@ -63,38 +63,43 @@ function App() {
   };
   const renderSearchForm = () => {
     return (
-      <form action="" onSubmit={handleFormSubmit}>
+      <form className="filters" action="" onSubmit={handleFormSubmit}>
         <h3>Filters</h3>
-        <label htmlFor="search">By country: </label>
-        <input
-          type="text"
-          name="search"
-          id="search"
-          value={searchValue}
-          onChange={handleSearchInput}
-        />
+        <div>
+          <label htmlFor="search">By country: </label>
+          <input
+            type="text"
+            name="search"
+            id="search"
+            value={searchValue}
+            onChange={handleSearchInput}
+          />
+        </div>
 
-        <label htmlFor="continent">By continent:</label>
-        <select
-          name="continent"
-          id="continent"
-          value={continentSelect}
-          onChange={handleSelectContinent}
-        >
-          <option value="all">All</option>
-          <option value="africa">Africa</option>
-          <option value="north-america">North America</option>
-          <option value="south-america">South America</option>
-          <option value="asia">Asia</option>
-          <option value="europe">Europe</option>
-          <option value="oceania">Oceania</option>
-        </select>
+        <div>
+          <label htmlFor="continent">By continent:</label>
+          <select
+            name="continent"
+            id="continent"
+            value={continentSelect}
+            onChange={handleSelectContinent}
+          >
+            <option value="all">All</option>
+            <option value="africa">Africa</option>
+            <option value="north-america">North America</option>
+            <option value="south-america">South America</option>
+            <option value="asia">Asia</option>
+            <option value="europe">Europe</option>
+            <option value="oceania">Oceania</option>
+          </select>
+        </div>
       </form>
     );
   };
   const renderAddCountryForm = () => {
     return (
       <form
+        className="add-form"
         onSubmit={(ev) => {
           ev.preventDefault();
         }}
@@ -173,19 +178,19 @@ function App() {
       })
       .map((country) => {
         return (
-          <li key={country.id}>
-            <div>
-              <p id={country.id} onClick={handleDelBtn}>
-                x
-              </p>
-            </div>
+          <section className="card" key={country.id}>
             <div>
               <p>{country.flag}</p>
               <p>{country.name}</p>
               <p>{country.capital}</p>
               <p>{country.continent}</p>
             </div>
-          </li>
+            <div>
+              <button className='delete-button' id={country.id} onClick={handleDelBtn}>
+                x
+              </button>
+            </div>
+          </section>
         );
       });
   };
@@ -193,12 +198,12 @@ function App() {
   return (
     <>
       {renderHeader()}
-      <main>
-        <div>
+      <main className='main'>
+        <div className="forms">
           {renderSearchForm()}
           {renderAddCountryForm()}
         </div>
-        <ul>{renderCountryCards()}</ul>
+        <div className="cards-container">{renderCountryCards()}</div>
       </main>
     </>
   );
