@@ -186,7 +186,11 @@ function App() {
               <p>{country.continent}</p>
             </div>
             <div>
-              <button className='delete-button' id={country.id} onClick={handleDelBtn}>
+              <button
+                className="delete-button"
+                id={country.id}
+                onClick={handleDelBtn}
+              >
                 x
               </button>
             </div>
@@ -198,7 +202,7 @@ function App() {
   return (
     <>
       {renderHeader()}
-      <main className='main'>
+      <main className="main">
         <div className="forms">
           {renderSearchForm()}
           {renderAddCountryForm()}
