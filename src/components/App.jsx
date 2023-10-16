@@ -10,11 +10,11 @@ function App() {
     capital: '',
     continent: '',
   };
-
   const [countries, setCountries] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [continentSelect, setContinentSelect] = useState('all');
   const [newCountryData, setNewCountryData] = useState(newObjData);
+  const [error, setError] = useState('');
 
   //effects
   useEffect(() => {
@@ -28,8 +28,26 @@ function App() {
   const handleSearchInput = (ev) => setSearchValue(ev.currentTarget.value);
   const handleSelectContinent = (ev) => setContinentSelect(ev.target.value);
   const handleAddNewCountry = () => {
-    setCountries([newCountryData, ...countries]);
-    setNewCountryData(newObjData);
+    if (
+      newCountryData.flag === '' &&
+      newCountryData.name === '' &&
+      newCountryData.capital === '' &&
+      newCountryData.continent === ''
+    ) {
+      setError('TE HAS OLVIDADO DE ALGO')
+    } else {
+      setError('')
+      setCountries([newCountryData, ...countries]);
+      setNewCountryData(newObjData);
+    }
+  };
+  const handleDelBtn = (ev) => {
+    const newList = countries;
+    const idxInList = newList.findIndex(
+      (element) => element.id === ev.currentTarget.id
+    );
+    newList.splice(idxInList, 1);
+    setCountries([...newList]);
   };
   //renders
   const renderHeader = () => {
@@ -133,6 +151,7 @@ function App() {
         <button type="submit" onClick={handleAddNewCountry}>
           Add country
         </button>
+        <p>{error}</p>
       </form>
     );
   };
@@ -152,13 +171,20 @@ function App() {
           return country.continent.toLowerCase() === continentSelect;
         }
       })
-      .map((country, i) => {
+      .map((country) => {
         return (
-          <li key={i} id={i}>
-            <p>{country.flag}</p>
-            <p>{country.name}</p>
-            <p>{country.capital}</p>
-            <p>{country.continent}</p>
+          <li key={country.id}>
+            <div>
+              <p id={country.id} onClick={handleDelBtn}>
+                x
+              </p>
+            </div>
+            <div>
+              <p>{country.flag}</p>
+              <p>{country.name}</p>
+              <p>{country.capital}</p>
+              <p>{country.continent}</p>
+            </div>
           </li>
         );
       });

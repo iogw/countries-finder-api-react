@@ -6,6 +6,7 @@ const callToApi = () => {
     .then((data) => {
       const result = data.map((country) => {
         const newData = {
+          id: country.cca2,
           flag: country.flag,
           name: country.name.official,
           capital: country.capital[0],
