@@ -6,20 +6,11 @@ const callToApi = () => {
     .then((data) => {
       const result = data.map((country) => {
         const newData = {
-          id: country.cca2,
           flag: country.flag,
           name: country.name.official,
           capital: country.capital[0],
+          continent: country.continents[0],
         };
-
-        //some countries have more than one continent
-        if (country.continents.length > 1) {
-          for (let index = 1; index < country.continents.length + 1; index++) {
-            newData[`continent${index}`] = country.continents[index - 1];
-          }
-        } else {
-          newData['continent1'] = country.continents[0];
-        }
         return newData;
       });
       return result;
