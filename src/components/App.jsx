@@ -40,11 +40,14 @@ function App() {
         if (continentSelect === 'all') {
           return country;
         } else if (continentSelect === 'north-america') {
-          return country.continents === 'North America';
+          return (
+            country.continent1 === 'North America' ||
+            country.continent2 === 'North America'
+          );
         } else if (continentSelect === 'south-america') {
-          return country.continents === 'South America';
+          return country.continent1 === 'South America';
         } else {
-          return country.continents.toLowerCase() === continentSelect;
+          return country.continent1.toLowerCase() === continentSelect || country.continent2.toLowerCase() === continentSelect;
         }
       })
       .map((country) => {
@@ -54,8 +57,8 @@ function App() {
             <p>{country.name}</p>
             <p>{country.capital}</p>
             <p>
-              {country.continents1}
-              {country.continents2 ? `, ${country.continents2}` : null}
+              {country.continent1}
+              {country.continent2 ? `, ${country.continent2}` : null}
             </p>
           </li>
         );

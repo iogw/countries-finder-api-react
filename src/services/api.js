@@ -15,10 +15,10 @@ const callToApi = () => {
         //some countries have more than one continent
         if (country.continents.length > 1) {
           for (let index = 1; index < country.continents.length + 1; index++) {
-            newData[`continents${index}`] = country.continents[index - 1];
+            newData[`continent${index}`] = country.continents[index - 1];
           }
         } else {
-          newData['continents1'] = country.continents[0];
+          newData['continent1'] = country.continents[0];
         }
         return newData;
       });
