@@ -26,7 +26,7 @@ function App() {
         <h1>Country Info App</h1>
         <p>
           Explore information about countries, capitals, and flags. Add new
-          countries and flter through the list!
+          countries and filter through the list!
         </p>
       </header>
     );
@@ -53,7 +53,10 @@ function App() {
             <p>{country.flag}</p>
             <p>{country.name}</p>
             <p>{country.capital}</p>
-            <p>{country.continents}</p>
+            <p>
+              {country.continents1}
+              {country.continents2 ? `, ${country.continents2}` : null}
+            </p>
           </li>
         );
       });

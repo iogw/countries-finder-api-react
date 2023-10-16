@@ -4,23 +4,22 @@ const callToApi = () => {
   )
     .then((response) => response.json())
     .then((data) => {
-      // return data;
       const result = data.map((country) => {
         const newData = {
           id: country.cca2,
           flag: country.flag,
           name: country.name.official,
+          capital: country.capital[0],
         };
-        newData.capital = country.capital[0];
-        newData.continents = country.continents[0];
 
-        // if (country.continents.length > 1) {
-        //   for (let index = 0; index < country.continents.length; index++) {
-        //     newData.continents.index = country.continents[index];
-        //   }
-        // } else {
-        //   newData.continents = country.continents[0];
-        // }
+        //some countries have more than one continent
+        if (country.continents.length > 1) {
+          for (let index = 1; index < country.continents.length + 1; index++) {
+            newData[`continents${index}`] = country.continents[index - 1];
+          }
+        } else {
+          newData['continents1'] = country.continents[0];
+        }
         return newData;
       });
       return result;
