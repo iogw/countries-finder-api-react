@@ -1,16 +1,51 @@
-// import { useState } from 'react'
-import reactLogo from '../assets/react.svg';
+import { useState, useEffect } from 'react';
 import '../styles/App.scss';
+import callToApi from '../services/api';
 
 function App() {
+  // state
+  const [countries, setCountries] = useState([]);
+
+  //effects
+  useEffect(() => {
+    callToApi().then((response) => {
+      setCountries(response);
+    });
+  }, []);
+
+  //events
+
+  //renders
+  const renderHeader = () => {
+    return (
+      <header>
+        <h1>Country Info App</h1>
+        <p>
+          Explore information about countries, capitals, and flags. Add new
+          countries and flter through the list!
+        </p>
+      </header>
+    );
+  };
+  const renderCountryCards = () => {
+    return countries.map((country) => {
+      return (
+        <li key={country.id}>
+          <p>{country.flag}</p>
+          <p>{country.name}</p>
+          <p>{country.capital}</p>
+          <p>{country.continents}</p>
+        </li>
+      );
+    });
+  };
+
   return (
     <>
-      <div>
-        <a href="https://react.dev" target="_blank" rel="noopener noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
+      {renderHeader()}
+      <main>
+        <ul>{renderCountryCards()}</ul>
+      </main>
     </>
   );
 }
