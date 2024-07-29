@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import '../styles/App.scss';
 import callToApi from '../services/api';
+import { v7 as uuid } from 'uuid';
 
 function App() {
   // state
@@ -37,7 +38,7 @@ function App() {
       setError('YOU FORGOT SOMETHING');
     } else {
       setError('');
-      setCountries([newCountryData, ...countries]);
+      setCountries([{ id: uuid(), ...newCountryData }, ...countries]);
       setNewCountryData(newObjData);
     }
   };
@@ -156,7 +157,7 @@ function App() {
         <button type="submit" onClick={handleAddNewCountry}>
           Add country
         </button>
-        {error? <p className='red'>{error}</p>:null}
+        {error ? <p className="red">{error}</p> : null}
       </form>
     );
   };
