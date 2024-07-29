@@ -12,7 +12,7 @@ function App() {
   };
   const [countries, setCountries] = useState([]);
   const [searchValue, setSearchValue] = useState('');
-  const [continentSelect, setContinentSelect] = useState('all');
+  const [continentSelector, setcontinentSelector] = useState('all');
   const [newCountryData, setNewCountryData] = useState(newObjData);
   const [error, setError] = useState('');
 
@@ -26,7 +26,7 @@ function App() {
   //events
   const handleFormSubmit = (ev) => ev.preventDefault();
   const handleSearchInput = (ev) => setSearchValue(ev.currentTarget.value);
-  const handleSelectContinent = (ev) => setContinentSelect(ev.target.value);
+  const handleSelectContinent = (ev) => setcontinentSelector(ev.target.value);
   const handleAddNewCountry = () => {
     if (
       newCountryData.flag === '' &&
@@ -34,7 +34,7 @@ function App() {
       newCountryData.capital === '' &&
       newCountryData.continent === ''
     ) {
-      setError('TE HAS OLVIDADO DE ALGO');
+      setError('YOU FORGOT SOMETHING');
     } else {
       setError('');
       setCountries([newCountryData, ...countries]);
@@ -81,7 +81,7 @@ function App() {
           <select
             name="continent"
             id="continent"
-            value={continentSelect}
+            value={continentSelector}
             onChange={handleSelectContinent}
           >
             <option value="all">All</option>
@@ -166,14 +166,14 @@ function App() {
         return country.name.toLowerCase().includes(searchValue.toLowerCase());
       })
       .filter((country) => {
-        if (continentSelect === 'all') {
+        if (continentSelector === 'all') {
           return country;
-        } else if (continentSelect === 'north-america') {
+        } else if (continentSelector === 'north-america') {
           return country.continent === 'North America';
-        } else if (continentSelect === 'south-america') {
+        } else if (continentSelector === 'south-america') {
           return country.continent === 'South America';
         } else {
-          return country.continent.toLowerCase() === continentSelect;
+          return country.continent.toLowerCase() === continentSelector;
         }
       })
       .map((country) => {
