@@ -28,5 +28,3 @@ Con una maquetación sencilla centrando el proyecto en la funcionalidad y en man
 - Estructurando el código por tipos.
 
 Lo más interesante ha sido el reto de permitir crear y eliminar nuevos elementos e incluirlos a los recibidos por la API.
-
-[Irene García Wodak](https://github.com/irenegwodak)
